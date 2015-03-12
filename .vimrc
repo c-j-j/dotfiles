@@ -58,21 +58,7 @@ autocmd FileType html noremap <buffer> <c-f> :call HtmlBeautify()<cr>
 " for css or scss
 autocmd FileType css noremap <buffer> <c-f> :call CSSBeautify()<cr>
 
-"Rspec mappings
-map <Leader>rt :wa<CR>:call VimuxRunCommand("clear; bundle exec rspec " . bufname("%"))<CR>
-map <Leader>ra :wa<CR>:call VimuxRunCommand("clear; bundle exec rspec")<CR>
-map <Leader>rs :wa<CR>:call VimuxRunCommand("clear; bundle exec rspec " . bufname("%") . ":" . line("."))<CR>
 map <Leader>vl :wa<CR>:VimuxRunLastCommand<CR>
-
-"Karma mappings
-map <Leader>rk :wa<CR>:call VimuxRunCommand("clear; karma start")<CR>
-
-" ctags
-nnoremap <silent><Leader>ta :!ctags -R<CR>
-
-" hit ,f to find the definition of the current class
-" this uses ctags. the standard way to get this is Ctrl-]
-nnoremap <silent> ,f <C-]>
 
 "syntastic
 let g:syntastic_javascript_checkers = ['jshint']
@@ -85,20 +71,6 @@ map <C-h> <C-w>h
 map <C-j> <C-w>j
 map <C-k> <C-w>k
 map <C-l> <C-w>l
-
-"use left and right to switch tabs
-nnoremap <C-Left> :tabprevious<CR>
-nnoremap <C-Right> :tabnext<CR>
-
-"Syntastic settings
-"set statusline+=%#warningmsg#
-"set statusline+=%{SyntasticStatuslineFlag()}
-"set statusline+=%*
-"
-"let g:syntastic_always_populate_loc_list = 1
-"let g:syntastic_auto_loc_list = 1
-"let g:syntastic_check_on_open = 1
-"let g:syntastic_check_on_wq = 0
 
 "Control P Settings
 let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
@@ -131,16 +103,6 @@ autocmd ColorScheme * highlight LineLengthError ctermbg=black guibg=black
 autocmd QuickFixCmdPost *grep* cwindow
 
 set laststatus=2
-"set statusline=
-"set statusline+=%<\                       " cut at start
-"set statusline+=%2*[%n%H%M%R%W]%*\        " buffer number, and flags
-"set statusline+=%-40f\                    " relative path
-"set statusline+=%=                        " seperate between right- and left-aligned
-"set statusline+=%1*%y%*%*\                " file type
-"set statusline+=%10(L(%l/%L)%)\           " line
-"set statusline+=%2(C(%v/125)%)\           " column
-"set statusline+=%P                        " percentage of file
-
 set undodir=~/.vim/undodir
 set undofile
 set undolevels=1000 "maximum number of changes that can be undone
@@ -170,8 +132,9 @@ vmap <C-s> <esc>:w<CR>gv
 "quit if file has been written to
 nnoremap <silent> <C-q> :q<CR>
 
-
-imap <C-L> <SPACE>=><SPACE>
+"ultisnips
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsEditSplit="vertical"
 
 "git shortcuts
 map <silent> <LocalLeader>gg :Ggrep <C-R><C-W><CR>
@@ -226,25 +189,11 @@ nnoremap <leader>w mz:%s/\s\+$//<cr>:let @/=''<cr>`z
 "cnoremap <c-e> <end>
 
 " keep the cursor in place while joining lines
-nnoremap J mzJ`z
-
-" split line
-" the normal use of S is covered by cc, so don't worry about shadowing it.
-nnoremap S i<cr><esc>^mwgk:silent! s/\v +$//<cr>:noh<cr>`w
+"nnoremap J mzJ`z
 
 " disable help
 inoremap <F1> <ESC>
 nnoremap <F1> <ESC>
 vnoremap <F1> <ESC>
 
-" convert dos format to unix format
-noremap <leader>ff :update<CR>:e ++ff=dos<CR>:setlocal ff=unix<CR>:w<CR>
-
-" HTML tag folding
-nnoremap <leader>ft Vatzf
-
-" CSS properties sorting
-nnoremap <leader>S ?{<CR>jV/^\s*\}?$<CR>k:sort<CR>:noh<CR>
-
 filetype plugin indent on    " required
-

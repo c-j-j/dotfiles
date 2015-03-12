@@ -125,12 +125,15 @@ command! -nargs=0 -bar SaveFile if &modified
           \|endif
 
 nnoremap <silent> <C-s> :<C-u>SaveFile<CR>
-inoremap <c-s> <Esc>:SaveFile<CR><Esc>
+inoremap <c-s> <Esc><Esc>:SaveFile<CR><Esc>
 inoremap <c-s> <c-o>:SaveFile<CR><Esc>
 vmap <C-s> <esc>:w<CR>gv
 
 "quit if file has been written to
 nnoremap <silent> <C-q> :q<CR>
+
+"exit quickfix list
+nnoremap Q :ccl<CR>
 
 "ultisnips
 let g:UltiSnipsExpandTrigger="<tab>"

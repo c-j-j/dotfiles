@@ -51,11 +51,12 @@ nnoremap <F5> :wa!<cr>:OmniSharpBuild<cr>
 " Builds can also run asynchronously with vim-dispatch installed
 nnoremap <leader>b :wa!<cr>:OmniSharpBuildAsync<cr>
 " automatic syntax check on events (TextChanged requires Vim 7.4)
-autocmd BufWritePost *.cs SyntasticCheck
+"autocmd BufWritePost *.cs SyntasticCheck
+"autocmd BufWritePost *.cs SyntasticSetLoclist
 
 " Automatically add new cs files to the nearest project on save
 " This slows us down on writes
-"autocmd BufWritePost *.cs call OmniSharp#AddToProject()
+autocmd BufWritePost *.cs call OmniSharp#AddToProject()
 
 "show type information automatically when the cursor stops moving
 "autocmd CursorHold *.cs call OmniSharp#TypeLookupWithoutDocumentation()
@@ -117,4 +118,7 @@ nnoremap <leader>sp :OmniSharpStopServer<cr>
 " Add syntax highlighting for types and interfaces
 nnoremap <leader>th :OmniSharpHighlightTypes<cr>
 "Don't ask to save when changing buffers (i.e. when jumping to a type definition)
+"
+"custom mappings
+vnoremap <leader>ev cvariable<esc>O<esc>pIvar variable = <esc>A;<esc>==w<F2>
 set hidden

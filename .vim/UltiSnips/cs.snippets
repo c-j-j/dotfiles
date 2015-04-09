@@ -21,6 +21,49 @@ public class $1
 }
 endsnippet
 
+snippet pim "private int method" b
+private int ${1:methodName}($2){
+	$0
+}
+endsnippet
+
+snippet pbm "private bool method" b
+private bool ${1:methodName}($2){
+	$0
+}
+
+endsnippet
 snippet AE "Assertion" b
-Assert.AreEqual($1);
+Assert.AreEqual($1, $2);
+endsnippet
+
+snippet pr "Print line in console"
+Console.WriteLine(${1:${VISUAL}});
+endsnippet
+
+snippet testclass "Skeleton for test class"
+using NUnit.Framework;
+
+namespace $1.Tests
+{
+    [TestFixture]
+    public class $2Test
+    {
+        [Test]
+        public void $3()
+        {
+			$0
+        }
+    }
+}
+endsnippet
+
+snippet class "Skeleton for class" b
+namespace $1
+{
+    public class $2
+    {
+		$0
+    }
+}
 endsnippet

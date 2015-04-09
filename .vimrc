@@ -27,6 +27,9 @@ set expandtab
 map , \
 let mapleader = ","
 
+" automatically start nerdtree
+"au VimEnter *  NERDTree
+
 
 " search
 "nnoremap / /\v
@@ -36,6 +39,7 @@ set smartcase
 set incsearch
 set showmatch
 set hlsearch
+
 
 noremap <silent> <leader><space> :noh<cr>:call clearmatches()<cr>
 
@@ -50,18 +54,50 @@ vnoremap R "hy:%s/<C-r>h//gc<left><left><left>
 
 "reformats page and go to last edit location
 map <Leader>= gg=Gg;
-
-"formats web files
-autocmd FileType javascript noremap <buffer>  <c-f> :call JsBeautify()<cr>
-" for html
-autocmd FileType html noremap <buffer> <c-f> :call HtmlBeautify()<cr>
-" for css or scss
-autocmd FileType css noremap <buffer> <c-f> :call CSSBeautify()<cr>
-
 map <Leader>vl :wa<CR>:VimuxRunLastCommand<CR>
 
 "syntastic
 let g:syntastic_javascript_checkers = ['jshint']
+
+let g:projectionist_heuristics = {
+      \ "project.clj" : {
+      \ "src/*.clj": {"alternate": "test/{}_test.clj",
+      \               "type": "src",
+      \               "start": "`lein test-refresh`"},
+      \ "test/*_test.clj": {"alternate": "src/{}.clj",
+      \                     "type": "test"}
+      \ }
+      \ }
+
+"clojure
+let g:rbpt_max = 16
+let g:rbpt_loadcmd_toggle = 0
+let g:rbpt_colorpairs = [
+    \ ['brown',       'RoyalBlue3'],
+    \ ['Darkblue',    'SeaGreen3'],
+    \ ['darkgray',    'DarkOrchid3'],
+    \ ['darkgreen',   'firebrick3'],
+    \ ['darkcyan',    'RoyalBlue3'],
+    \ ['darkred',     'SeaGreen3'],
+    \ ['darkmagenta', 'DarkOrchid3'],
+    \ ['brown',       'firebrick3'],
+    \ ['gray',        'RoyalBlue3'],
+    \ ['black',       'SeaGreen3'],
+    \ ['darkmagenta', 'DarkOrchid3'],
+    \ ['Darkblue',    'firebrick3'],
+    \ ['darkgreen',   'RoyalBlue3'],
+    \ ['darkcyan',    'SeaGreen3'],
+    \ ['darkred',     'DarkOrchid3'],
+    \ ['red',         'firebrick3'],
+    \ ]
+
+let g:clojure_fuzzy_indent = 1
+au VimEnter * RainbowParenthesesToggle
+au Syntax * RainbowParenthesesLoadRound
+au Syntax * RainbowParenthesesLoadSquare
+au Syntax * RainbowParenthesesLoadBraces
+
+let g:clojure_fuzzy_indent_patterns = ['^facts', '^fact', '^let']
 
 " use ,F to jump to tag in a vertical split
 nnoremap <silent> ,F :let word=expand("<cword>")<CR>:vsp<CR>:wincmd w<cr>:exec("tag ". word)<cr>")"
@@ -162,8 +198,8 @@ set winminwidth=15
 " no arrow keys in normal and insert modes
 nnoremap <up> <nop>
 nnoremap <down> <nop>
-"nnoremap <left> <nop>
-"nnoremap <right> <nop>
+nnoremap <left> <nop>
+nnoremap <right> <nop>
 inoremap <up> <nop>
 inoremap <down> <nop>
 inoremap <left> <nop>
@@ -198,5 +234,3 @@ nnoremap <leader>w mz:%s/\s\+$//<cr>:let @/=''<cr>`z
 inoremap <F1> <ESC>
 nnoremap <F1> <ESC>
 vnoremap <F1> <ESC>
-
-filetype plugin indent on    " required

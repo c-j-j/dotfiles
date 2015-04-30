@@ -66,6 +66,13 @@ let g:projectionist_heuristics = {
       \               "start": "`lein test-refresh`"},
       \ "test/*_test.clj": {"alternate": "src/{}.clj",
       \                     "type": "test"}
+      \ },
+      \ "Gemfile" : {
+      \ "lib/*.rb": {"alternate": "spec/{}_spec.rb",
+      \               "type": "src"
+      \               },
+      \ "spec/*_spec.rb": {"alternate": "lib/{}.rb",
+      \                     "type": "test"}
       \ }
       \ }
 

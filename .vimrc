@@ -53,7 +53,7 @@ noremap ,R "hyb"iyw:%s/<C-r>i/<C-r>h/gc<left><left><left>
 vnoremap R "hy:%s/<C-r>h//gc<left><left><left>
 
 "reformats page and go to last edit location
-map <Leader>= gg=Gg;
+map <Leader>cf gg=Gg;
 map <Leader>vl :wa<CR>:VimuxRunLastCommand<CR>
 
 "syntastic
@@ -116,7 +116,7 @@ map <C-k> <C-w>k
 map <C-l> <C-w>l
 
 "Control P Settings
-let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
+let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git\|tmp'
 
 set cursorline
 set wrap
@@ -138,9 +138,9 @@ autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
 map <silent> <LocalLeader>ws :highlight clear ExtraWhitespace<CR>
 
 " highlight too-long lines
-autocmd BufRead,InsertEnter,InsertLeave * 2match LineLengthError /\%126v.*/
-highlight LineLengthError ctermbg=black guibg=black
-autocmd ColorScheme * highlight LineLengthError ctermbg=black guibg=black
+"autocmd BufRead,InsertEnter,InsertLeave * 2match LineLengthError /\%126v.*/
+"highlight LineLengthError ctermbg=black guibg=black
+"autocmd ColorScheme * highlight LineLengthError ctermbg=black guibg=black
 
 " set quickfix window to appear after grep invocation
 autocmd QuickFixCmdPost *grep* cwindow
@@ -203,18 +203,18 @@ set winwidth=90
 set winminwidth=15
 
 " no arrow keys in normal and insert modes
-nnoremap <up> <nop>
-nnoremap <down> <nop>
-nnoremap <left> <nop>
-nnoremap <right> <nop>
-inoremap <up> <nop>
-inoremap <down> <nop>
-inoremap <left> <nop>
-inoremap <right> <nop>
-vnoremap <up> <nop>
-vnoremap <down> <nop>
-vnoremap <left> <nop>
-vnoremap <right> <nop>
+"nnoremap <up> <nop>
+"nnoremap <down> <nop>
+"nnoremap <left> <nop>
+"nnoremap <right> <nop>
+"inoremap <up> <nop>
+"inoremap <down> <nop>
+"inoremap <left> <nop>
+"inoremap <right> <nop>
+"vnoremap <up> <nop>
+"vnoremap <down> <nop>
+"vnoremap <left> <nop>
+"vnoremap <right> <nop>
 noremap j gj
 noremap k gk
 noremap gj j
